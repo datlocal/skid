@@ -39,7 +39,7 @@ local itemArgs = {
     [1] = "capsule_christmas2", -- Item identifier
     [2] = "event",              -- Shop type
     [3] = "event_shop",         -- Shop category
-    [4] = "30"                  -- Quantity or price (adjust as needed)
+    [4] = "10"                  -- Quantity or price (adjust as needed)
 }
 
 local canBuy = true
