@@ -1,21 +1,3 @@
--- Function to simulate a mouse click in the center of the screen
-local function autoClick()
-    local userInputService = game:GetService("UserInputService")
-    
-    -- Get the middle of the screen
-    local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
-    local middlePosition = Vector2.new(screenSize.X / 2, screenSize.Y / 2)
-    
-    -- Simulate a click event at the center of the screen
-    local input = Instance.new("InputObject")
-    input.Position = middlePosition
-    input.UserInputType = Enum.UserInputType.MouseButton1
-    
-    -- Trigger the click
-    userInputService.InputBegan:Fire(input)
-    userInputService.InputEnded:Fire(input)
-end
-
 -- Redeem gift codes
 local giftCodes = {
     "MERRYCHRISTMAS",
@@ -72,10 +54,6 @@ while canUse do
     end)
     if success and response then
         print("Dùng item thành công!")
-        
-        -- Simulate auto-click in the middle of the screen when the item is used
-        autoClick()
-
     else
         warn("Dùng item thất bại:", response)
         canUse = true -- Stop the loop if the usage fails (i.e., no more items to use)
