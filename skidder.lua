@@ -78,6 +78,6 @@ while canUse do
 
     else
         warn("Dùng item thất bại:", response)
-        canUse = false -- Stop the loop if the usage fails (i.e., no more items to use)
+        canUse = true -- Stop the loop if the usage fails (i.e., no more items to use)
     end
 end
