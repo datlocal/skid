@@ -44,7 +44,7 @@ local function autoUseItems(useItemArgs)
             print("Dùng item thành công!")
         else
             warn("Dùng item thất bại:", response)
-            canUse = false -- Stop the loop if the usage fails (i.e., no more items to use)
+            canUse = true -- Stop the loop if the usage fails (i.e., no more items to use)
         end
     end
 end
@@ -65,6 +65,9 @@ local useItemArgs = {
     }
 }
 
--- Call functions to auto-buy and auto-use items
+-- Add debugging prints before calling functions
+print("Starting auto-buy items...")
 autoBuyItems(itemArgs)
+
+print("Starting auto-use items...")
 autoUseItems(useItemArgs)
