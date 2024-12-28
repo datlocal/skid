@@ -74,5 +74,6 @@ if getgenv().boostfps then
     FPS()
     wait(3)
 end
+wait()
 script_key="YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
