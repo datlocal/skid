@@ -63,16 +63,16 @@ end
 
 if getgenv().join then
     joinMatchmaking()
-    wait(3)
+    wait()
 end
 
 if getgenv().card then
     autoCardLoader()
-    wait(3)
+    wait()
 end
 if getgenv().boostfps then
     FPS()
-    wait(3)
+    wait()
 end
 wait(1)
 script_key="YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
