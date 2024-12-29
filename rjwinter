@@ -117,5 +117,5 @@ cleanUpMap()
 
 -- Additional script execution
 wait(1)
-local script_key = "YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej"
+script_key = "YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
