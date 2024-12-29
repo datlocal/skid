@@ -1,0 +1,28 @@
+local args = {
+    [1] = "_lobbytemplate_event3" -- Replace with the lobby name you want
+}
+
+local joinInterval = 1 -- Time (in seconds) between each join attempt
+local autoJoin = true -- Set to false to stop the auto-repeat function
+
+function joinLobby()
+    local success, err = pcall(function()
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("endpoints")
+            :WaitForChild("client_to_server")
+            :WaitForChild("request_join_lobby")
+            :InvokeServer(unpack(args))
+    end)
+
+    if success then
+        print("Successfully requested to join lobby:", args[1])
+    else
+        warn("Failed to join lobby. Error:", err)
+    end
+end
+
+-- Auto-repeat loop
+while autoJoin do
+    joinLobby()
+    task.wait(joinInterval) -- Wait for the defined interval before retrying
+end
