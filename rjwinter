@@ -24,17 +24,20 @@ getgenv().Cards = {
     "- Cooldown III", "+ Range III", "+ Attack III", "+ Gain 2 Random Effects Tier 3",
     "+ New Path"
 }
+
 --------------------------------------------------------------------------------------------
+-- Functions
 local function FPS()
     local success, err = pcall(function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngducok/doing-some-shit/refs/heads/main/fpsobf.lua"))()
     end)
     if success then
-        print("done")
+        print("FPS Boost Loaded")
     else
-        print("false:", err)
+        print("Failed to load FPS Boost:", err)
     end
 end
+
 local function joinMatchmaking()
     local args = {
         [1] = "christmas_event"
@@ -45,7 +48,7 @@ local function joinMatchmaking()
     if success then
         print("Matchmaking executed")
     else
-        print("Failed to execute matchmaking: " .. err)
+        print("Failed to execute matchmaking:", err)
     end
 end
 
@@ -56,11 +59,44 @@ local function autoCardLoader()
     if success then
         print("Auto Card Loaded")
     else
-        print("Failed to load Auto Card: " .. err)
+        print("Failed to load Auto Card:", err)
     end
 end
 
+local function cleanUpMap()
+    -- Remove snow objects
+    for _, child in ipairs(workspace._map:GetChildren()) do
+        if child:FindFirstChild("snow") then
+            child.snow:Destroy()
+            print("Removed snow from:", child.Name)
+        end
+    end
 
+    -- Remove Beacon
+    if workspace._map.player:FindFirstChild("Beacon") then
+        workspace._map.player.Beacon:Destroy()
+        print("Beacon destroyed")
+    end
+
+    -- Modify area part
+    local area = workspace._map.player:FindFirstChild("area")
+    if area then
+        print("Modifying area part...")
+        area.BrickColor = BrickColor.new("Lime green")
+        area.Color = Color3.fromRGB(0, 255, 0)
+        area.Size = Vector3.new(0.3, 15, 15)
+        area.Shape = Enum.PartType.Block
+
+        local attachment = area:FindFirstChild("Attachment")
+        if attachment then
+            attachment:Destroy()
+            print("Attachment removed from area")
+        end
+    end
+end
+
+--------------------------------------------------------------------------------------------
+-- Execution
 if getgenv().join then
     joinMatchmaking()
     wait()
@@ -70,10 +106,16 @@ if getgenv().card then
     autoCardLoader()
     wait()
 end
+
 if getgenv().boostfps then
     FPS()
     wait()
 end
+
+-- Clean up map modifications
+cleanUpMap()
+
+-- Additional script execution
 wait(1)
-script_key="YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
+local script_key = "YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
