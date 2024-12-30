@@ -3,9 +3,10 @@ if not game:IsLoaded() then
 end
 
 -- Configuration
-getgenv().join = false --true/false
-getgenv().card = true --true/false
-getgenv().boostfps = true --true/false
+getgenv().join = false -- true/false
+getgenv().card = true -- true/false
+getgenv().boostfps = true -- true/false
+getgenv().joinsolo = true -- true/false
 getgenv().FocusWave = 5 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "+ Range I",
@@ -131,6 +132,26 @@ local function cleanUpMap()
     end
 end
 
+local function joinSoloLobby()
+    local args = {
+        [1] = "_lobbytemplate_event3" -- Replace with the lobby name you want
+    }
+
+    local success, err = pcall(function()
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("endpoints")
+            :WaitForChild("client_to_server")
+            :WaitForChild("request_join_lobby")
+            :InvokeServer(unpack(args))
+    end)
+
+    if success then
+        print("Successfully requested to join solo lobby:", args[1])
+    else
+        warn("Failed to join solo lobby. Error:", err)
+    end
+end
+
 --------------------------------------------------------------------------------------------
 -- Execution
 if getgenv().join then
@@ -148,6 +169,10 @@ if getgenv().boostfps then
     wait()
 end
 
+if getgenv().joinsolo then
+    joinSoloLobby()
+end
+
 -- Clean up map modifications
 cleanUpMap()
 
@@ -155,3 +180,12 @@ cleanUpMap()
 wait(1)
 script_key = "YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
+
+-- Auto-repeat logic for joining solo lobby
+local joinInterval = 0 -- Time (in seconds) between each join attempt
+local autoJoin = getgenv().joinsolo -- Auto-repeat toggle
+
+while autoJoin do
+    joinSoloLobby()
+    task.wait(joinInterval)
+end
