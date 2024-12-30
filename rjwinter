@@ -6,7 +6,6 @@ end
 getgenv().join = false --true/false
 getgenv().card = true --true/false
 getgenv().boostfps = true --true/false
--- credit from : Bocchi World
 getgenv().FocusWave = 5 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "+ Range I",
