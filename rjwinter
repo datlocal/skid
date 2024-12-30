@@ -31,9 +31,6 @@ getgenv().Cards = {
     "+ Gain 2 Random Effects Tier 1",
     "+ Gain 2 Random Effects Tier 2",
     "+ Gain 2 Random Effects Tier 3",
-    "+ Gain 2 Random Curses Tier 1", 
-    "+ Gain 2 Random Curses Tier 2", 
-    "+ Gain 2 Random Curses Tier 3",
     "+ Enemy Regen I", 
     "+ Enemy Regen II", 
     "+ Enemy Regen III",
@@ -55,6 +52,9 @@ getgenv().Cards = {
     "+ Enemy Speed I", 
     "+ Enemy Speed II", 
     "+ Enemy Speed III",  
+    "+ Gain 2 Random Curses Tier 1", 
+    "+ Gain 2 Random Curses Tier 2", 
+    "+ Gain 2 Random Curses Tier 3",
     "+ New Path"
 }
 
