@@ -6,7 +6,7 @@ end
 getgenv().join = false -- true/false
 getgenv().card = true -- true/false
 getgenv().boostfps = true -- true/false
-getgenv().joinsolo = true -- true/false
+getgenv().joinsolo = false -- true/false
 getgenv().FocusWave = 5 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "+ Range I",
@@ -169,8 +169,13 @@ if getgenv().boostfps then
     wait()
 end
 
+-- Auto-repeat logic for joining solo lobby
 if getgenv().joinsolo then
-    joinSoloLobby()
+    local joinInterval = 5 -- Time (in seconds) between each join attempt
+    while getgenv().joinsolo do
+        joinSoloLobby()
+        task.wait(joinInterval)
+    end
 end
 
 -- Clean up map modifications
@@ -180,12 +185,3 @@ cleanUpMap()
 wait(1)
 script_key = "YjSVgRRTkNtpZdaNGzSqnXUwDZNECNej";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
-
--- Auto-repeat logic for joining solo lobby
-local joinInterval = 0 -- Time (in seconds) between each join attempt
-local autoJoin = getgenv().joinsolo -- Auto-repeat toggle
-
-while autoJoin do
-    joinSoloLobby()
-    task.wait(joinInterval)
-end
