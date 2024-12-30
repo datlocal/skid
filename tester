@@ -1,5 +1,144 @@
-local args = {
-    [1] = "__DAILY_CHALLENGE"
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+-- Configuration
+getgenv().join = false -- true/false
+getgenv().card = true -- true/false
+getgenv().boostfps = true -- true/false
+getgenv().FocusWave = 5 -- Priority limit wave
+getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
+    "+ Range I", "- Cooldown I", "+ Attack I", "+ Gain 2 Random Effects Tier 1",
+    "- Cooldown II", "+ Range II", "+ Attack II", "+ Gain 2 Random Effects Tier 2",
+    "- Cooldown III", "+ Range III", "+ Attack III", "+ Gain 2 Random Effects Tier 3"
+}
+getgenv().Cards = { -- All cards after FocusWave wave ends
+    "+ Explosive Deaths I", "+ Explosive Deaths II", "+ Explosive Deaths III",
+    "+ Gain 2 Random Curses Tier 3", "+ Gain 2 Random Curses Tier 2", "+ Gain 2 Random Curses Tier 1",
+    "+ Enemy Speed III", "+ Enemy Speed II", "+ Enemy Regen III", "+ Enemy Shield III",
+    "+ Enemy Health III", "+ Enemy Regen II", "+ Enemy Shield II", "+ Enemy Regen I",
+    "+ Enemy Speed I", "+ Enemy Shield I", "+ Enemy Health II", "+ Enemy Health I",
+    "+ Yen I", "+ Yen II", "+ Yen III", "+ Boss Damage I", "- Cooldown I",
+    "+ Gain 2 Random Effects Tier 1", "+ Range I", "+ Attack I", "- Cooldown II",
+    "+ Boss Damage II", "+ Boss Damage III", "- Cooldown III", "+ Gain 2 Random Effects Tier 2",
+    "+ Range II", "+ Attack II", "+ Gain 2 Random Effects Tier 3", "+ Range III",
+    "+ Attack III", "+ New Path"
 }
 
-game:GetService("ReplicatedStorage"):WaitForChild("endpoints"):WaitForChild("client_to_server"):WaitForChild("request_matchmaking"):InvokeServer(unpack(args))
+-- Utility Functions
+local function safeHttpGet(url)
+    local success, response = pcall(function()
+        return game:HttpGet(url)
+    end)
+    if success then
+        return response
+    else
+        warn("Failed to fetch URL:", url)
+        return nil
+    end
+end
+
+local function FPSBoost()
+    local fpsScript = safeHttpGet("https://raw.githubusercontent.com/Ngducok/doing-some-shit/refs/heads/main/fpsobf.lua")
+    if fpsScript then
+        local success, err = pcall(loadstring(fpsScript))
+        if success then
+            print("FPS Boost Loaded Successfully")
+        else
+            warn("Failed to load FPS Boost:", err)
+        end
+    end
+end
+
+local function joinMatchmaking()
+    local args = { "christmas_event" }
+    local success, err = pcall(function()
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.request_matchmaking:InvokeServer(unpack(args))
+    end)
+    if success then
+        print("Matchmaking Request Sent Successfully")
+    else
+        warn("Failed to send matchmaking request:", err)
+    end
+end
+
+local function autoCardLoader()
+    local cardScript = safeHttpGet("https://raw.githubusercontent.com/Ngducok/doing-some-shit/refs/heads/main/atpcobf.lua")
+    if cardScript then
+        local success, err = pcall(loadstring(cardScript))
+        if success then
+            print("Auto Card Loaded Successfully")
+        else
+            warn("Failed to load Auto Card:", err)
+        end
+    end
+end
+
+local function cleanUpMap()
+    if workspace:FindFirstChild("_map") then
+        for _, child in ipairs(workspace._map:GetChildren()) do
+            if child:FindFirstChild("snow") then
+                child.snow:Destroy()
+                print("Removed snow from:", child.Name)
+            end
+        end
+
+        local playerMap = workspace._map:FindFirstChild("player")
+        if playerMap and playerMap:FindFirstChild("Beacon") then
+            playerMap.Beacon:Destroy()
+            print("Beacon destroyed")
+        end
+
+        local area = playerMap and playerMap:FindFirstChild("area")
+        if area then
+            print("Modifying area part...")
+            area.BrickColor = BrickColor.new("Lime green")
+            area.Color = Color3.fromRGB(0, 255, 0)
+            area.Size = Vector3.new(0.3, 15, 15)
+            area.Shape = Enum.PartType.Block
+
+            local attachment = area:FindFirstChild("Attachment")
+            if attachment then
+                attachment:Destroy()
+                print("Attachment removed from area")
+            end
+        end
+    else
+        warn("_map not found in workspace")
+    end
+end
+
+-- Execution
+if getgenv().join then
+    joinMatchmaking()
+    wait()
+end
+
+if getgenv().card then
+    autoCardLoader()
+    wait()
+end
+
+if getgenv().boostfps then
+    FPSBoost()
+    wait()
+end
+
+cleanUpMap()
+
+-- Additional script execution
+wait(1)
+local script_key = "vNMOgXRnlQZPTgIYnboxwSTxDDWyCHrP"
+if script_key and #script_key > 0 then
+    local premiumScript = safeHttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua")
+    if premiumScript then
+        local success, err = pcall(loadstring(premiumScript))
+        if success then
+            print("Premium BuangHub Loaded Successfully")
+        else
+            warn("Failed to load Premium BuangHub:", err)
+        end
+    end
+else
+    warn("Invalid script_key")
+end
