@@ -3,10 +3,9 @@ if not game:IsLoaded() then
 end
 
 -- Configuration
-getgenv().join = false -- true/false
-getgenv().card = true -- true/false
-getgenv().boostfps = true -- true/false
-getgenv().joinsolo = false -- true/false
+getgenv().join = false --true/false
+getgenv().card = true --true/false
+getgenv().boostfps = true --true/false
 getgenv().FocusWave = 5 -- Priority limit wave
 getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
     "+ Range I",
@@ -132,26 +131,6 @@ local function cleanUpMap()
     end
 end
 
-local function joinSoloLobby()
-    local args = {
-        [1] = "_lobbytemplate_event3" -- Replace with the lobby name you want
-    }
-
-    local success, err = pcall(function()
-        game:GetService("ReplicatedStorage")
-            :WaitForChild("endpoints")
-            :WaitForChild("client_to_server")
-            :WaitForChild("request_join_lobby")
-            :InvokeServer(unpack(args))
-    end)
-
-    if success then
-        print("Successfully requested to join solo lobby:", args[1])
-    else
-        warn("Failed to join solo lobby. Error:", err)
-    end
-end
-
 --------------------------------------------------------------------------------------------
 -- Execution
 if getgenv().join then
@@ -167,15 +146,6 @@ end
 if getgenv().boostfps then
     FPS()
     wait()
-end
-
--- Auto-repeat logic for joining solo lobby
-if getgenv().joinsolo then
-    local joinInterval = 5 -- Time (in seconds) between each join attempt
-    while getgenv().joinsolo do
-        joinSoloLobby()
-        task.wait(joinInterval)
-    end
 end
 
 -- Clean up map modifications
