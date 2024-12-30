@@ -128,7 +128,7 @@ cleanUpMap()
 
 -- Additional script execution
 wait(1)
-local script_key = "vNMOgXRnlQZPTgIYnboxwSTxDDWyCHrP"
+script_key = "vNMOgXRnlQZPTgIYnboxwSTxDDWyCHrP"
 if script_key and #script_key > 0 then
     local premiumScript = safeHttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua")
     if premiumScript then
