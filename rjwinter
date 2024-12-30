@@ -6,55 +6,62 @@ end
 getgenv().join = false --true/false
 getgenv().card = true --true/false
 getgenv().boostfps = true --true/false
-getgenv().FocusWave = 20 -- Priority limit wave
-getgenv().PriorityCards = {
-    "+ Attack I", 
-    "+ Attack II", 
-    "+ Attack III", 
+-- credit from : Bocchi World
+getgenv().FocusWave = 5 -- Priority limit wave
+getgenv().PriorityCards = { -- Priority tags when wave = FocusWave
+    "+ Range I",
+    "- Cooldown I",
+    "+ Attack I",
     "+ Gain 2 Random Effects Tier 1",
-    "+ Gain 2 Random Effects Tier 2",
-    "+ Gain 2 Random Effects Tier 3",
-    "+ Range I", 
-    "+ Range II",
-    "+ Range III",
-    "- Cooldown I", 
     "- Cooldown II",
-    "- Cooldown III",
-}
-getgenv().Cards = {
-    "+ Explosive Deaths I", 
-    "+ Explosive Deaths II", 
-    "+ Explosive Deaths III",
-    "+ Enemy Speed I", 
-    "+ Enemy Speed II", 
-    "+ Enemy Speed III",  
-    "+ Gain 2 Random Effects Tier 1",
-    "+ Gain 2 Random Effects Tier 2",
-    "+ Gain 2 Random Effects Tier 3",
-    "+ Enemy Regen I", 
-    "+ Enemy Regen II", 
-    "+ Enemy Regen III",
-    "+ Boss Damage I", 
-    "+ Boss Damage II", 
-    "+ Boss Damage III",
-    "+ Attack I", 
+    "+ Range II",
     "+ Attack II",
-    "+ Attack III",
-    "+ Range I", 
-    "+ Range II",
-    "+ Range III",
-    "- Cooldown I", 
-    "- Cooldown II",
+    "+ Gain 2 Random Effects Tier 2",
     "- Cooldown III",
-    "+ Yen I", 
-    "+ Yen II", 
-    "+ Yen III",
-    "+ Gain 2 Random Curses Tier 1", 
-    "+ Gain 2 Random Curses Tier 2", 
+    "+ Range III",
+    "+ Attack III",
+    "+ Gain 2 Random Effects Tier 3"
+}
+getgenv().Cards = { -- All cards after FocusWave wave ends
+    "+ Explosive Deaths I",
+    "+ Explosive Deaths II",
+    "+ Explosive Deaths III",
     "+ Gain 2 Random Curses Tier 3",
+    "+ Gain 2 Random Curses Tier 2",
+    "+ Gain 2 Random Curses Tier 1",
+    "+ Enemy Speed III",
+    "+ Enemy Speed II",
+    "+ Enemy Regen III",
+    "+ Enemy Shield III",
+    "+ Enemy Health III",
+    "+ Enemy Regen II",
+    "+ Enemy Shield II",
+    "+ Enemy Regen I",
+    "+ Enemy Speed I",
+    "+ Enemy Shield I",
+    "+ Enemy Health II",
+    "+ Enemy Health I",
+    "+ Yen I",
+    "+ Yen II",
+    "+ Yen III",
+    "+ Boss Damage I",
+    "- Cooldown I",
+    "+ Gain 2 Random Effects Tier 1",
+    "+ Range I",
+    "+ Attack I",
+    "- Cooldown II",
+    "+ Boss Damage II",
+    "+ Boss Damage III",
+    "- Cooldown III",
+    "+ Gain 2 Random Effects Tier 2",
+    "+ Range II",
+    "+ Attack II",
+    "+ Gain 2 Random Effects Tier 3",
+    "+ Range III",
+    "+ Attack III",
     "+ New Path"
 }
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bocchi-World/Bocchi-Main/refs/heads/main/pickcard.lua"))()
 --------------------------------------------------------------------------------------------
 -- Functions
 local function FPS()
