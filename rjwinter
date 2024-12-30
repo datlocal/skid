@@ -20,7 +20,6 @@ getgenv().PriorityCards = {
     "- Cooldown I", 
     "- Cooldown II",
     "- Cooldown III"
-
 }
 getgenv().Cards = {
     "+ Explosive Deaths I", 
