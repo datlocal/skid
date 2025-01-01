@@ -1,0 +1,32 @@
+-- Function to remove unnecessary effects
+local function removeEffects()
+    -- Remove all particle emitters
+    for _, effect in pairs(game.Workspace:GetDescendants()) do
+        if effect:IsA("ParticleEmitter") then
+            effect:Destroy()
+            print("Removed particle emitter: " .. effect:GetFullName())
+        end
+    end
+
+    -- Remove all sound objects
+    for _, sound in pairs(game.Workspace:GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound:Destroy()
+            print("Removed sound: " .. sound:GetFullName())
+        end
+    end
+
+    -- Remove all decals
+    for _, decal in pairs(game.Workspace:GetDescendants()) do
+        if decal:IsA("Decal") then
+            decal:Destroy()
+            print("Removed decal: " .. decal:GetFullName())
+        end
+    end
+
+    -- Add any other effects you want to remove in the same way
+    -- Example: Remove other types of visual effects, like Billboards, etc.
+end
+
+-- Run the function to remove effects
+removeEffects()
