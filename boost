@@ -1,4 +1,5 @@
-cal function loadExternalScript(url)
+-- Function to load and execute external scripts with error checking
+local function loadExternalScript(url)
     local success, result = pcall(function()
         return loadstring(game:HttpGet(url))()
     end)
