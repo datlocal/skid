@@ -1,0 +1,27 @@
+cal function loadExternalScript(url)
+    local success, result = pcall(function()
+        return loadstring(game:HttpGet(url))()
+    end)
+    
+    if success then
+        print("Successfully loaded and executed: " .. url)
+    else
+        warn("Error loading script: " .. url)
+        warn(result)  -- Log the error message
+    end
+end
+
+-- Function to load all scripts
+local function loadAllScripts()
+    -- Load the GPU boosting script
+    loadExternalScript("https://raw.githubusercontent.com/datlocal/skid/refs/heads/main/boostgpu")
+    
+    -- Load the map cleaning script
+    loadExternalScript("https://raw.githubusercontent.com/datlocal/skid/refs/heads/main/cleanmap")
+    
+    -- Load the effect removal script
+    loadExternalScript("https://raw.githubusercontent.com/datlocal/skid/refs/heads/main/removeEffect")
+end
+
+-- Run the scripts
+loadAllScripts()
