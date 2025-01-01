@@ -1,5 +1,5 @@
 local args = {
-    [1] = [1] = "christmas_event"
+    [1] = "christmas_event"
 }
 
 game:GetService("ReplicatedStorage").endpoints.client_to_server.request_matchmaking:InvokeServer(unpack(args))
