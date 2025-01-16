@@ -2,7 +2,7 @@ local args = {
     [1] = "_lobbytemplate_event3" -- Replace with the lobby name you want
 }
 
-local joinInterval = 15 -- Time (in seconds) between each join attempt
+local joinInterval = 30 -- Time (in seconds) between each join attempt
 local autoJoin = true -- Set to false to stop the auto-repeat function
 
 function joinLobby()
